@@ -1,0 +1,23 @@
+# DESIGN.md Playbook — Mimari & Tasarım Dili
+
+> Soru: **Nasıl kurulu?** İki bölüm: **(A) Mimari Kararlar** (her zaman) + **(B) Tasarım Dili** (UI varsa). Tutarlılıkta **teknik hakem** = PLAN/CLAUDE/DESIGN teknik çelişirse **DESIGN kazanır** (ama INTENT amacını ezemez → `references/tutarlilik.md §1`). **Başkasının DESIGN.md'si performans vermez → İÇSELLEŞTİR.**
+
+## A. Mimari Kararlar (her zaman)
+Her kilit kararı **ADR-lite** yaz: **Karar · Gerekçe · Neden diğeri değil.**
+- Kapsam: stack gerekçeleri, veri modeli/akış, sınırlar/katmanlar, entegrasyonlar, kilit trade-off'lar.
+- Her karar bir INTENT başarı kriterini/sınırını **taşımalı** (amaca hizmet).
+- Belirsiz mimari/araç → `/ai-proje-rehberi`'ye danış; gerekirse referans repo'ları aç-incele.
+
+## B. Tasarım Dili (UI projesiyse — yoksa atla)
+`google-labs-code/design.md` formatı: **token (makine-okunur) + prose (NEDEN).**
+- **Token'lar (yaml):** `colors` (primary/secondary/tertiary=tek vurgu/neutral=zemin), `typography` (h1/body/mono: fontFamily+fontSize+weight), `rounded`, `spacing`, `components`. Referans: `{colors.primary}`.
+- **Prose — sıralı `##` bölümler:** Overview · Colors · Typography · Layout & Spacing · (Elevation) · (Shapes) · Components · Do's & Don'ts. Her bölüm token kararının gerekçesi.
+- **Kendi palet/font'un** — genel değil, projeye/kullanıcıya özel ("statement"/minimal vb. ton).
+
+## Tutarlılık geçidi (`references/tutarlilik.md §3`)
+- [ ] Mimari, INTENT başarı kriterlerini destekliyor mu? Kapsam-dışını mimariye sızdırmıyor mu? (INTENT↔DESIGN)
+- [ ] Her PLAN adımı bu mimariyle uygulanabilir mi? (PLAN↔DESIGN)
+- [ ] CLAUDE `# Stack`/`# Kurallar` ile çelişen var mı? → **çelişirse DESIGN kazanır, CLAUDE'u güncelle** (bilinçli, gerekçeli).
+
+## Çıktı
+Proje kökünde `DESIGN.md`. **Yazınca deftere damıt** (UYGULAMA katmanı; teknik hakem). **Şablon:** `assets/templates/DESIGN.md`. **Kaynak:** KB *DESIGN.md — AI-Okunur Tasarım Sistemi Spec'i (Google Labs)* (token+prose formatı) + *5-Dosya Workflow'u*.
