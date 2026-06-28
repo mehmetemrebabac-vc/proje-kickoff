@@ -1,6 +1,8 @@
 # Tutarlılık Motoru (Consistency Engine)
 
 > **Misyon:** 5 dosya (INTENT → PLAN → CLAUDE → DESIGN → MEMORY) sırayla kurulurken, her yeni cevap/dosya öncekilerle **TEYİT** edilir; çelişki üzerine **asla yazılmaz** — işaretlenir, sınıflandırılır, hiyerarşiye göre çözülür **VEYA** kullanıcıya sorulur, sonra deftere işlenir. Bu dosya skill'in kalbidir: her `YAZ` adımı önce buradan geçer. (Kaynak: vault kök `CLAUDE.md` INGEST 4-ilişki taksonomisi + "çelişki = işaretle, üzerine yazma"; KB *5-Dosya Workflow'u* "DESIGN.md kazanır".)
+>
+> **İçindekiler:** §1 Otorite hiyerarşisi · §2 Defter (+resume) · §3 Pre-write gate · §4 İlişki sınıfları · §5 Çelişki protokolü · §6 Kapanış matrisi. · **Akış/dosya-sistemi mekaniği** (resume, mod, çatışma geçidi, devir) → `references/akis-modlari.md`.
 
 ---
 
@@ -49,11 +51,15 @@ Oturum boyunca tutulan **hafif tek tablo** (sohbet-içi; dosyaya yazılmaz). Her
 
 **Kurallar:** ① Sadece *kilit* karar girer (gürültü değil). ② Her giriş **tek cümle.** ③ Çelişki çözülünce kaybeden satır *silinmez* → `çözüldü→K#` notuyla işaretlenir. ④ Açık-soru kapanınca `Durum: kesin` olur. ⑤ Defteri her `ONAY`dan sonra kullanıcıya kısa özetle göster.
 
+> **Resume — diskten yeniden-türetme:** Oturum koparsa/context düşerse defter kaybolmaz; `/proje-kickoff` yeniden çağrılınca var olan 5 dosyadan damıtılarak **yeniden kurulur** (`references/akis-modlari.md §1 RESUME`). Disk = kaynak; sohbet defteri = türetilmiş önbellek. Opsiyonel hızlı anchor: `<proje-kökü>/.kickoff/state.json`.
+
 ---
 
 ## 3. Dosya-öncesi tutarlılık geçidi (pre-write gate)
 
 Her dosya `YAZ` edilmeden önce, ilgili dosya çiftleri için aşağıdaki invariantlar **TEK TEK** kontrol edilir. Bir kontrol kalırsa → §5 (çelişki protokolü).
+
+> **Dosya-sistemi boyutu:** Bu geçit *içerik* çelişkisini denetler. Hedef dosya **diskte zaten varsa**, mevcut dosya da bir **akran karar kaynağıdır** (önceki defter satırıyla aynı statüde) — `references/akis-modlari.md §3` pre-write çatışma geçidiyle okunur + sınıflanır, **ASLA kör-yazılmaz.**
 
 | Çift | Tutarlılık invariantı (✅ = geçer) |
 |------|-------------------------------------|
@@ -98,6 +104,8 @@ Yeni karar, mevcut deftere göre sınıflanır:
 ```
 
 **Çekirdek kural:** *Üzerine yazma — açıkça işaretle.* Hiçbir karar sessizce ezilmez; her çözüm defterde iz bırakır. INTENT amacının netliğinden şüphedeysen otomatik çözme — **SOR.**
+
+> **Disk muadili:** Diskte mevcut bir dosya taslakla çelişiyorsa bu protokolden **AYNEN** geçer (işaretle → sınıfla → katmanla → çöz/SOR → defter). Dosyayı sessizce ezmek = bu kuralın ihlali (`references/akis-modlari.md §3`).
 
 ---
 

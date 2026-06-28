@@ -23,4 +23,4 @@
 - [ ] `# Yapma` kapsam-dışını güçlendiriyor mu (çürütmüyor)?
 
 ## Çıktı
-Proje kökünde `CLAUDE.md`. **Yazınca deftere damıt** (UYGULAMA katmanı). **Şablon:** `assets/templates/CLAUDE.md`. **Kaynak:** KB *5-Dosya Workflow'u* + *Karpathy Claude Code Kuralları* (4 prensip) + *AI Kodlamada Commit Disiplini* (scope-prefixed commit).
+Proje kökünde `CLAUDE.md`. **Yazınca deftere damıt** (UYGULAMA katmanı). **Şablon:** `assets/templates/CLAUDE.template.md` (memory-collision için `.template` ekli; mevcut `CLAUDE.md` varsa ASLA tam-overwrite — `references/akis-modlari.md §3` ile birleştir). **Kaynak:** KB *5-Dosya Workflow'u* + *Karpathy Claude Code Kuralları* (4 prensip) + *AI Kodlamada Commit Disiplini* (scope-prefixed commit).

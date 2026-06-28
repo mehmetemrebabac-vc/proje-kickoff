@@ -7,7 +7,7 @@
 - Adımları **bağımlılık sırasına** diz (önce-gelen, sonra-gelen net).
 - Her adım **atomik** = tek "paketli iş" → **tek commit** (`<scope>: <açıklama>`, → KB *AI Kodlamada Commit Disiplini*).
 - Her adımda iki şey yaz: **NE yapılacak** + **NASIL doğrulanacak** (mümkünse localhost'ta ayağa kaldır / test yaz / çıktı gözle).
-- Her adımın **karşıladığı başarı kriterini** `→` ile işaretle (izlenebilirlik).
+- Her adımın **karşıladığı başarı kriterini** `→` ile işaretle (izlenebilirlik). Doğrulamayı INTENT'in **Given/When/Then** başarı kriterine **demirle**: `→ karşıladığı GWT: <kriter>` — adımın "bitti" kanıtı o GWT'nin **Then**'idir.
 - Belirsiz teknik seçim (stack/araç/pattern) → `/ai-proje-rehberi`'ye danış; karar DESIGN.md'ye gider, PLAN ona hizalanır.
 
 ## Röportaj soruları
@@ -18,6 +18,7 @@
 - [ ] **Kapsam-dışı** bir şeyi planlayan adım var mı? (varsa **çıkar** — kapsam-dışı bekçisi)
 - [ ] Adım sırası bağımlılıklara uygun mu?
 - [ ] Her adımın doğrulama yolu var mı?
+- [ ] Her adımın doğrulaması bir INTENT **GWT** kriterine bağlı mı (Then = bitti-kanıtı)?
 
 ## Çıktı
 Proje kökünde `PLAN.md`. **Yazınca deftere damıt** (UYGULAMA katmanı). **Şablon:** `assets/templates/PLAN.md`. **Kaynak:** KB *5-Dosya Workflow'u* + *AI Kodlamada Commit Disiplini* (paketli iş = commit).

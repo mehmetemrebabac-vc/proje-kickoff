@@ -8,6 +8,16 @@ Her kilit kararı **ADR-lite** yaz: **Karar · Gerekçe · Neden diğeri değil.
 - Her karar bir INTENT başarı kriterini/sınırını **taşımalı** (amaca hizmet).
 - Belirsiz mimari/araç → `/ai-proje-rehberi`'ye danış; gerekirse referans repo'ları aç-incele.
 
+### Mimari karar check-listi (UI olsun olmasın — ADR-hafif)
+Her kilit teknik karar için kısa ADR kaydı (özellikle **non-UI** projelerde DESIGN'ın asıl gövdesi budur):
+- [ ] **Karar:** ne seçildi (tek cümle)
+- [ ] **Bağlam/güç:** hangi kısıt/INTENT kriteri bunu zorladı
+- [ ] **Alternatifler:** elenen ≥1 seçenek + neden elendi
+- [ ] **Sonuç/ödünleşim:** kazanılan + feda edilen (perf/karmaşıklık/kilitlenme)
+- [ ] **Sınır:** değişmeyecek invariant (brownfield'da mevcut kontrat)
+
+Kapsanması gereken **non-UI eksenler:** veri modeli/şema · API/arayüz kontratları · hata-yönetimi & idempotency · eşzamanlılık/state · gözlemlenebilirlik · güvenlik sınırı · dağıtım/runtime. Her ADR'yi INTENT başarı kriterine demirle.
+
 ## B. Tasarım Dili (UI projesiyse — yoksa atla)
 `google-labs-code/design.md` formatı: **token (makine-okunur) + prose (NEDEN).**
 - **Token'lar (yaml):** `colors` (primary/secondary/tertiary=tek vurgu/neutral=zemin), `typography` (h1/body/mono: fontFamily+fontSize+weight), `rounded`, `spacing`, `components`. Referans: `{colors.primary}`.
