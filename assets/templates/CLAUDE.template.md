@@ -21,6 +21,7 @@
 - **Surgical changes:** sadece gerekeni değiştir; mevcut stile uy, alakasız yeri refactor etme.
 - **Goal-driven:** muğlak isteği test edilebilir başarı kriterine çevir, doğrulanana dek döngüle.
 - **Commit:** `<scope>: <açıklama>` (paketli iş başına; conventional-commit değil, scope öne).
+- **Hafıza:** oturum başında `MEMORY.md`'yi oku; her paketli işten sonra sor: "MEMORY'e yazılacak var mı?" — kesinleşen karar → semantic, olay/çözülen çelişki → episodic (tarih-damgalı), tekrarlanabilir kalıp → procedural (tetik→koşul→aksiyon).
 - **Test/çalıştırma:** <proje-özel kural>
 - <ekle…>
 

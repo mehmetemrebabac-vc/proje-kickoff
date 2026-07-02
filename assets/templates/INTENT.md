@@ -23,9 +23,12 @@
 
 ## Başarı Kriteri
 <!-- Nasıl ölçeriz? SAYILABİLİR / test edilebilir liste. Her madde için:
-     "Given <durum>, When <eylem>, Then <ölçülebilir sonuç>" düşün. -->
-- [ ] <doldur — ölçülebilir>
-- [ ] <doldur — ölçülebilir>
+     "Given <durum>, When <eylem>, Then <ölçülebilir sonuç>" düşün.
+     BK# kimliği ZORUNLU (PLAN adımları → BK# ile buna demirlenir; kickoff-verify eşler).
+     Doğrulayıcı sınıfı: [kod] = test/script doğrular · [judge] = LLM değerlendirir ·
+     [insan] = kullanıcı onayı. Mümkün olan her kriteri [kod]a it. -->
+- [ ] **BK1** <doldur — ölçülebilir GWT> · doğrulayıcı: [kod|judge|insan]
+- [ ] **BK2** <doldur — ölçülebilir GWT> · doğrulayıcı: [kod|judge|insan]
 
 ## Kapsam Dışı
 <!-- Bu görevde BİLEREK YAPMAYACAKLARIMIZ. Planı dağılmaktan korur — ASLA boş bırakma.

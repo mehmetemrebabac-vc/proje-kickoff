@@ -26,8 +26,9 @@
 - <gerçek/karar> (kaynak: INTENT/DESIGN)
 
 ## procedural — nasıl-yapılır kalıpları
-<!-- Tekrarlayan işlemler / reusable yordamlar. Kaynak: CLAUDE.md kuralları. -->
-- <kalıp adı>: <adımlar / komut>
+<!-- Tekrarlayan işlemler / reusable yordamlar. Kaynak: CLAUDE.md kuralları.
+     Format: tetik → koşul → aksiyon (taklit edilebilir olsun; KB *Hafıza Taksonomisi*). -->
+- <tetik: ne olduğunda> → <koşul: hangi durumda> → <aksiyon: ne yapılır / hangi komut>
 
 ---
 <!-- Tutarlılık: bu dosya yukarıdaki katman-eşlemesini izler — semantic←INTENT/DESIGN,

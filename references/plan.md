@@ -7,7 +7,7 @@
 - Adımları **bağımlılık sırasına** diz (önce-gelen, sonra-gelen net).
 - Her adım **atomik** = tek "paketli iş" → **tek commit** (`<scope>: <açıklama>`, → KB *AI Kodlamada Commit Disiplini*).
 - Her adımda iki şey yaz: **NE yapılacak** + **NASIL doğrulanacak** (mümkünse localhost'ta ayağa kaldır / test yaz / çıktı gözle).
-- Her adımın **karşıladığı başarı kriterini** `→` ile işaretle (izlenebilirlik). Doğrulamayı INTENT'in **Given/When/Then** başarı kriterine **demirle**: `→ karşıladığı GWT: <kriter>` — adımın "bitti" kanıtı o GWT'nin **Then**'idir.
+- Her adımın **karşıladığı başarı kriterini** `→ BK#` kimliğiyle işaretle (izlenebilirlik — kickoff-verify mekanik eşler: her BK ≥1 adımda, her adım geçerli bir BK'de). Adımın "bitti" kanıtı, o BK'nin **GWT Then**'idir; kriter `[kod]` sınıfındaysa kanıt test/script çıktısıdır.
 - Belirsiz teknik seçim (stack/araç/pattern) → `/ai-proje-rehberi`'ye danış; karar DESIGN.md'ye gider, PLAN ona hizalanır.
 
 ## Röportaj soruları

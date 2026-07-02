@@ -16,13 +16,16 @@
 
 1. **<adım adı>** — <ne yapılacak>
    - Doğrulama: <nasıl test edilir / hangi çıktı görülür>
-   - Karşıladığı kriter: → <INTENT başarı kriteri>
+   - Karşıladığı kriter: → BK1
    - commit: `<scope>: <açıklama>`
 
 2. **<adım adı>** — <ne yapılacak>
    - Doğrulama: <…>
-   - Karşıladığı kriter: → <…>
+   - Karşıladığı kriter: → BK2
    - commit: `<scope>: <açıklama>`
+
+<!-- Karşıladığı kriter DAİMA "→ BK#" biçiminde (INTENT'teki kimlik) — kickoff-verify
+     mekanik eşler: her BK ≥1 adımda karşılanmalı, her adım geçerli bir BK'ye işaret etmeli. -->
 
 <!-- … gereği kadar adım. Belirsiz teknik seçim çıkarsa /ai-proje-rehberi'ye danış. -->
 
