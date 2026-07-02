@@ -1,6 +1,6 @@
 # Tutarlılık Motoru (Consistency Engine)
 
-> **Misyon:** 5 dosya (INTENT → PLAN → CLAUDE → DESIGN → MEMORY) sırayla kurulurken, her yeni cevap/dosya öncekilerle **TEYİT** edilir; çelişki üzerine **asla yazılmaz** — işaretlenir, sınıflandırılır, hiyerarşiye göre çözülür **VEYA** kullanıcıya sorulur, sonra deftere işlenir. Bu dosya skill'in kalbidir: her `YAZ` adımı önce buradan geçer. (Kaynak: vault kök `CLAUDE.md` INGEST 4-ilişki taksonomisi + "çelişki = işaretle, üzerine yazma"; KB *5-Dosya Workflow'u* "DESIGN.md kazanır".)
+> **Misyon:** 5 dosya (INTENT → PLAN → CLAUDE → DESIGN → MEMORY) sırayla kurulurken, her yeni cevap/dosya öncekilerle **TEYİT** edilir; çelişki üzerine **asla yazılmaz** — işaretlenir, sınıflandırılır, hiyerarşiye göre çözülür **VEYA** kullanıcıya sorulur, sonra deftere işlenir. Bu dosya skill'in kalbidir: her `YAZ` adımı önce buradan geçer. **DELTA modunda da aynen geçerli:** spec'in "hedef delta + kapsam-sınırı" bölümü AMAÇ katmanıdır. (Kaynak: vault kök `CLAUDE.md` 4-ilişki taksonomisi — motor SSOT'u v4'ten beri `ai-proje-rehberi/references/kaynak-degerlendirme.md` ADIM 4 — + "çelişki = işaretle, üzerine yazma"; KB *5-Dosya Workflow'u* "DESIGN.md kazanır".)
 >
 > **İçindekiler:** §1 Otorite hiyerarşisi · §2 Defter (+resume) · §3 Pre-write gate · §4 İlişki sınıfları · §5 Çelişki protokolü · §6 Kapanış matrisi. · **Akış/dosya-sistemi mekaniği** (resume, mod, çatışma geçidi, devir) → `references/akis-modlari.md`.
 
@@ -51,15 +51,15 @@ Oturum boyunca tutulan **hafif tek tablo** (sohbet-içi; dosyaya yazılmaz). Her
 
 **Kurallar:** ① Sadece *kilit* karar girer (gürültü değil). ② Her giriş **tek cümle.** ③ Çelişki çözülünce kaybeden satır *silinmez* → `çözüldü→K#` notuyla işaretlenir. ④ Açık-soru kapanınca `Durum: kesin` olur. ⑤ Defteri her `ONAY`dan sonra kullanıcıya kısa özetle göster.
 
-> **Resume — diskten yeniden-türetme:** Oturum koparsa/context düşerse defter kaybolmaz; `/proje-kickoff` yeniden çağrılınca var olan 5 dosyadan damıtılarak **yeniden kurulur** (`references/akis-modlari.md §1 RESUME`). Disk = kaynak; sohbet defteri = türetilmiş önbellek. Opsiyonel hızlı anchor: `<proje-kökü>/.kickoff/state.json`.
+> **Resume — diskten yeniden-türetme:** Oturum koparsa/context düşerse defter kaybolmaz; `/proje-kickoff` yeniden çağrılınca var olan 5 dosyadan damıtılarak **yeniden kurulur** (`references/akis-modlari.md §1 RESUME`). Disk = kaynak; sohbet defteri = türetilmiş önbellek. Kalıcı anchor: `<proje-kökü>/.kickoff/state.json` (**ZORUNLU** — her ONAY'dan sonra güncellenir; RESUME ayrıştırıcısının tek güvenilir sinyali).
 
 ---
 
-## 3. Dosya-öncesi tutarlılık geçidi (pre-write gate)
+## 3. İçerik geçidi (dosya-öncesi tutarlılık denetimi)
 
-Her dosya `YAZ` edilmeden önce, ilgili dosya çiftleri için aşağıdaki invariantlar **TEK TEK** kontrol edilir. Bir kontrol kalırsa → §5 (çelişki protokolü).
+Her dosya `YAZ` edilmeden önce, ilgili dosya çiftleri için aşağıdaki invariantlar **TEK TEK** kontrol edilir. Bir kontrol kalırsa → §5 (çelişki protokolü). (İki geçidin ilki budur; ikincisi **disk geçidi** → `akis-modlari.md §3`. Sıra: TASLAK → **içerik geçidi** → ONAY → **disk geçidi** → YAZ.)
 
-> **Dosya-sistemi boyutu:** Bu geçit *içerik* çelişkisini denetler. Hedef dosya **diskte zaten varsa**, mevcut dosya da bir **akran karar kaynağıdır** (önceki defter satırıyla aynı statüde) — `references/akis-modlari.md §3` pre-write çatışma geçidiyle okunur + sınıflanır, **ASLA kör-yazılmaz.**
+> **Dosya-sistemi boyutu:** Bu geçit *içerik* çelişkisini denetler. Hedef dosya **diskte zaten varsa**, mevcut dosya da bir **akran karar kaynağıdır** (önceki defter satırıyla aynı statüde) — `references/akis-modlari.md §3` disk çatışma geçidiyle okunur + sınıflanır, **ASLA kör-yazılmaz.**
 
 | Çift | Tutarlılık invariantı (✅ = geçer) |
 |------|-------------------------------------|

@@ -28,7 +28,7 @@
 - **Tag'ler:** `claude-code` `context` `workflow` `loop-engineering` `agent` `orkestrasyon`
 - **Neden değerli:** Genel AI-kodlama disiplini; 3 bağımsız resmi kaynak aynı kalıbı söylüyor. `5-Dosya` ve `Loop Engineering` notlarını tamamlar (geçiş ritüeli).
 - **Kaynak URL:** https://code.claude.com/docs/en/best-practices
-- **Öz:** Spec/plan bitince TAZE oturumda (yalnızca spec context'i) uygulamaya geç — Claude Code plan kabulünde context'i oto-temizliyor ("eski keşif çöpü plan-adherence'ı bozar"). İyi spec self-contained handoff kontratıdır: dosya/arayüz adları + kapsam-dışı + uçtan-uca doğrulama. Hiyerarşik context çıkarımı (Description→Acceptance→Design) = INTENT→PLAN→DESIGN hiyerarşisi.
+- **Öz:** Spec/plan bitince TAZE oturumda (yalnızca spec context'i) uygulamaya geç — Claude Code'da plan-kabul sonrası context temizliği `showClearContextOnPlanAccept` ayarına bağlı OPSİYONELDİR (default kapalı) — bu yüzden devirde AÇIK `/clear` emri verilir ("eski keşif çöpü plan-adherence'ı bozar"). İyi spec self-contained handoff kontratıdır: dosya/arayüz adları + kapsam-dışı + uçtan-uca doğrulama. Hiyerarşik context çıkarımı (Description→Acceptance→Design) = INTENT→PLAN→DESIGN hiyerarşisi.
 
 ### D. Agentic Resumability — Diske Yazılan Durum & Oturum-Arası Re-entry
 - **Kategori:** AI Sistemleri Mimari & Otomasyon
@@ -84,4 +84,4 @@
 ---
 
 ## 4. Ekleme protokolü (hatırlatma)
-Her adayı vault INGEST motorundan geçir: damıt → adversarial doğrula → skor-kartı (≥70 KABUL) → uyum/çelişki tara → `_sources/` ham kaydı → **öner→onay→ekle** → ≥1 karşılıklı bağ + MOC + Index → `python3 <skill>/scripts/kb-verify.py` TEMİZ ✅. **Birleştirme uyarısı:** A (SDD), B (brownfield), E (scaffold-conflict) içerik komşusu — aralarında çapraz-ref kur, tekrarı önle.
+Her adayı vault INGEST motorundan geçir: damıt → adversarial doğrula → skor-kartı (≥70 KABUL) → uyum/çelişki tara → `_sources/` ham kaydı → **öner→onay→ekle** → ≥1 karşılıklı bağ + MOC + Index → `python3 <vault>/scripts/kb-verify.py` TEMİZ ✅ (script v4'ten beri vault repo'sunda yaşar). **Birleştirme uyarısı:** A (SDD), B (brownfield), E (scaffold-conflict) içerik komşusu — aralarında çapraz-ref kur, tekrarı önle.
