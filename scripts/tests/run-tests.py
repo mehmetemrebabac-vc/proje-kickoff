@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-kickoff-verify v1 regression testleri.
+kickoff-verify regression testleri (v2 kontrol kapsamı dahil).
 Her vaka: geçici dizinde geçerli bir kickoff-çıktısı kur → tek mutasyon → kickoff-verify
 → beklenen exit code + çıktı imzası. Fixture'lar programatik (repo'ya .md konmaz).
 

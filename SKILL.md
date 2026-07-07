@@ -8,8 +8,14 @@ description: >-
   (tek change-spec) içerir. Boş bir chat'te /proje-kickoff ile çağrılır; dosyaları
   sırayla, her birini gerektiği kadar derinlikte, birbiriyle TUTARLI olacak şekilde
   kurar. KULLANMA: hızlı soru, bilgi danışma (onun için /ai-proje-rehberi).
+license: MIT
+compatibility: >-
+  Claude Code gerektirir (AskUserQuestion, alt-ajan/Agent tool, plan-mode);
+  doğrulayıcı script için python3; devir adımları git varsayar. Claude.ai/API
+  yüzeylerine taşınabilir değildir.
 metadata:
-  version: 3.0.0   # MAJOR=akış semantiği · MINOR=yeni referans/kontrol · PATCH=metin
+  author: Emre Babac
+  version: 3.1.0   # MAJOR=akış semantiği · MINOR=yeni referans/kontrol · PATCH=metin
 ---
 
 # Proje Kickoff — 5-Dosya Orkestratörü (+ DELTA modu)
@@ -29,7 +35,7 @@ metadata:
 ## Akış
 
 ### 0. Başlangıç
-**ÖNCE iki motoru Read et:** `references/tutarlilik.md` (içerik geçidi) + `references/akis-modlari.md` (RESUME ayrıştırıcısı / mod / disk geçidi / plan-mode). Devir reçetesi `references/devir.md`'dedir — **yalnız §6b'de** okunur. Sonra sırayla:
+**ÖNCE iki motoru Read et:** `references/tutarlilik.md` (içerik geçidi) + `references/akis-modlari.md` (RESUME ayrıştırıcısı / mod / disk geçidi / plan-mode / arıza modları). Devir reçetesi `references/devir.md`'dedir — **yalnız §6b'de** okunur. Sonra sırayla:
 1. **RESUME ayrıştırıcısı** (`akis-modlari.md §1` — üç-katmanlı sinyal): `state.json` varsa gerçek RESUME (faz `devredildi` ise TAMAMLANMIŞ dalı); state.json yok ama INTENT+PLAN birlikte varsa kökeni SOR; **yalnız CLAUDE.md/README varsa RESUME DEĞİL** → brownfield keşif girdisi.
 2. **MOD sorusu** (`akis-modlari.md §2`, AskUserQuestion — kullanıcıya SADE etiketlerle: *"Sıfırdan yeni bir proje" / "Mevcut projeye büyük yeni bir parça" / "Küçük değişiklik / düzeltme / bakım"*; iç adlar greenfield / brownfield-yapısal / brownfield-DELTA yalnız defter **K0** + state'te). Sinyal netse ilgili seçenek "(Önerilen)". Brownfield'lerde önce **keşif fazı** (mevcut stack/konvansiyon/CLAUDE.md oku; büyük repo'da Explore alt-ajanına devret — eşik `akis-modlari.md §2`; okunanları `state.json.kesif_izi`ne yaz — re-baseline güvencesi).
 3. **Funnel açılışı:** bağlam sorularından önce serbest anlatı iste — *"Projeyi/işi kafandaki EN TAM haliyle anlat (dağınık olabilir)."* 6 başlık röportajı bu anlatıdan huni gibi indirgenir; anlatıda cevabı zaten verilmiş soruyu tekrar sorma, teyit et.

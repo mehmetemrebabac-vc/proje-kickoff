@@ -1,4 +1,4 @@
-# Akış Modları — Resume · Mod · Disk Geçidi · Plan-Mode
+# Akış Modları — Resume · Mod · Disk Geçidi · Plan-Mode · Arıza Modları
 
 > **Misyon:** Skill'in OPERASYONEL akış mekaniği — **oturum boyutu** (resume/ayrıştırma), **proje boyutu** (greenfield / brownfield-yapısal / brownfield-DELTA), **dosya-sistemi boyutu** (disk çatışma geçidi) ve **harness boyutu** (plan-mode). `tutarlilik.md` *içerik* çelişkisini denetler (içerik geçidi); **bu dosya akışı + dosya-sistemini** denetler (disk geçidi). İkisi birlikte motoru tamamlar. **Çıkış boyutu (devir/handoff) ayrı dosyadadır → `references/devir.md` (yalnız §6b'de okunur).** (Kaynak: SDD araçları — GitHub Spec Kit, OpenSpec, BMAD, Agent OS; scaffold conflict UX — Yeoman/copier; Anthropic *Effective harnesses for long-running agents*; KB *Ralph — Otonom Agentic Kodlama Loop'u (prd.json)*.)
 > **Kullanıcı-yüzü dili (SKILL.md ilke 7):** bu dosyadaki iç terimler (RESUME, state.json, mod adları, defter, re-derive) sohbette kullanıcıya söylenmez; aşağıdaki soru kalıpları SADE hâlleriyle sorulur. Dosya adları (INTENT.md vb.) gerçek artefakt oldukları için söylenebilir.
@@ -163,6 +163,20 @@ Kural: kullanıcı plan mode'daysa röportaj/taslak/keşif aynen sürer (hepsi s
 ama her `YAZ` adımından önce kullanıcıdan plan mode'dan çıkmasını iste (ya da yazılacak
 içeriği plan olarak sun, kabulünde yaz). Kabul-sonrası context temizlenirse §1 RESUME
 ayrıştırıcısı zaten güvence — state.json + diskteki dosyalar kaldığı yeri bilir.
+
+---
+
+## 6. Arıza modları (araç/ortam fallback'leri — sessiz düşme YASAK)
+
+Araç eksikliği akışı DURDURMAZ; her arızada sırayla: ① kullanıcıya SADE tek cümleyle bildir → ② fallback'i uygula → ③ deftere işle. Hiçbir arıza sessizce yutulmaz, hiçbir adım "araç yoktu" diye sessizce atlanmaz.
+
+| Arıza | Fallback |
+|---|---|
+| `python3` yok / kickoff-verify koşarken hata | Script docstring'indeki kontrol listesi (SSOT) **ELLE** madde madde denetlenir; devir özetine "mekanik değil elle doğrulandı" notu düşülür. |
+| `state.json` bozuk (geçersiz JSON) | Bozuk dosyayı `.kickoff/state.json.bak`e taşı; defteri §1 ADIM 3 ile diskteki dosyalardan yeniden türet; state.json'ı sıfırdan kur. |
+| Alt-ajan açılamıyor (keşif Explore'u / 6a taze-göz / devir critic'i) | Ana model üstlenir + kullanıcıya "bağımsız göz yok, kendi taramam" uyarısı; 6a'da taze-göz güvencesinin eksik kaldığı devir özetine not edilir. |
+| AskUserQuestion kullanılamıyor | Aynı seçenekler düz metin numaralı liste olarak sorulur; default dayatılmaz, "(Önerilen)" işareti korunur. |
+| WebFetch yok / ağ kapalı | Araştırma sorusu kullanıcıya yöneltilir ya da makul varsayılan ÖNERİLİR (SKILL.md ilke 5 "bilmiyorum" yolu); kaynaksız iddia uydurulmaz. |
 
 ---
 
