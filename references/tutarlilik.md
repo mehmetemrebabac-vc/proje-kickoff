@@ -1,6 +1,6 @@
 # Tutarlılık Motoru (Consistency Engine)
 
-> **Misyon:** 5 dosya (INTENT → PLAN → CLAUDE → DESIGN → MEMORY) sırayla kurulurken, her yeni cevap/dosya öncekilerle **TEYİT** edilir; çelişki üzerine **asla yazılmaz** — işaretlenir, sınıflandırılır, hiyerarşiye göre çözülür **VEYA** kullanıcıya sorulur, sonra deftere işlenir. Bu dosya skill'in kalbidir: her `YAZ` adımı önce buradan geçer. **DELTA modunda da aynen geçerli:** spec'in "hedef delta + kapsam-sınırı" bölümü AMAÇ katmanıdır. (Kaynak: vault kök `CLAUDE.md` 4-ilişki taksonomisi — motor SSOT'u v4'ten beri `ai-proje-rehberi/references/kaynak-degerlendirme.md` ADIM 4 — + "çelişki = işaretle, üzerine yazma"; KB *5-Dosya Workflow'u* "DESIGN.md kazanır".)
+> **Misyon:** 5 dosya (INTENT → PLAN → CLAUDE → DESIGN → MEMORY) sırayla kurulurken, her yeni cevap/dosya öncekilerle **TEYİT** edilir; çelişki üzerine **asla yazılmaz** — işaretlenir, sınıflandırılır, hiyerarşiye göre çözülür **VEYA** kullanıcıya sorulur, sonra deftere işlenir. Bu dosya skill'in kalbidir: her `YAZ` adımı önce buradan geçer. **DELTA modunda da aynen geçerli:** spec'in "hedef delta + kapsam-sınırı" bölümü AMAÇ katmanıdır. (Köken — tarihsel uyarlama, canlı bağımlılık DEĞİL: 4-ilişki taksonomisi + "çelişki = işaretle, üzerine yazma" ilkesi vault INGEST motorundan, "DESIGN.md kazanır" KB *5-Dosya Workflow'u*ndan uyarlandı. Motor bu dosyada kendi başına TAMDIR — §4 tabloyu içerir; vault/ai-proje-rehberi kurulu olmasa da çalışır.)
 >
 > **İçindekiler:** §1 Otorite hiyerarşisi · §2 Defter (+resume) · §3 Pre-write gate · §4 İlişki sınıfları · §5 Çelişki protokolü · §6 Kapanış matrisi. · **Akış/dosya-sistemi mekaniği** (resume, mod, çatışma geçidi, devir) → `references/akis-modlari.md`.
 
@@ -75,7 +75,7 @@ Her dosya `YAZ` edilmeden önce, ilgili dosya çiftleri için aşağıdaki invar
 
 ---
 
-## 4. İlişki sınıfları (4 ilişki — vault INGEST'ten)
+## 4. İlişki sınıfları (4 ilişki)
 
 Yeni karar, mevcut deftere göre sınıflanır:
 
@@ -133,4 +133,4 @@ Yeni karar, mevcut deftere göre sınıflanır:
 
 ---
 
-**Çapraz-referans:** `SKILL.md` (akışın her adımında bu geçit çağrılır) · `references/intent.md` (AMAÇ katmanı kaynağı) · `references/design.md` (UYGULAMA katmanı hakemi). **Kaynak:** KB *5-Dosya Workflow'u (INTENT, PLAN, CLAUDE, DESIGN, MEMORY)* + vault kök `CLAUDE.md` (INGEST uyum/çelişki taksonomisi).
+**Çapraz-referans:** `SKILL.md` (akışın her adımında bu geçit çağrılır) · `references/intent.md` (AMAÇ katmanı kaynağı) · `references/design.md` (UYGULAMA katmanı hakemi). **Köken (tarihsel uyarlama; canlı referans değil):** KB *5-Dosya Workflow'u (INTENT, PLAN, CLAUDE, DESIGN, MEMORY)* + vault INGEST uyum/çelişki taksonomisi.

@@ -9,7 +9,7 @@ description: >-
   sırayla, her birini gerektiği kadar derinlikte, birbiriyle TUTARLI olacak şekilde
   kurar. KULLANMA: hızlı soru, bilgi danışma (onun için /ai-proje-rehberi).
 metadata:
-  version: 2.0.0   # MAJOR=akış semantiği · MINOR=yeni referans/kontrol · PATCH=metin
+  version: 2.0.1   # MAJOR=akış semantiği · MINOR=yeni referans/kontrol · PATCH=metin
 ---
 
 # Proje Kickoff — 5-Dosya Orkestratörü (+ DELTA modu)
@@ -50,7 +50,7 @@ metadata:
 `references/claude-md.md` · şablon `assets/templates/CLAUDE.template.md` (memory-collision için `.template` ekli; HEDEFE `<proje-kökü>/CLAUDE.md` yazılır — mevcutsa ASLA tam-overwrite, daima birleştir). `# Proje · # Stack · # Kurallar · # Yapma` (4 prensip: kural+yasak açık, hemen-ekle, tek-kaynak) + **Hafıza kuralı satırı** (MEMORY döngüsünü kodlama fazında canlı tutan tek yer — şablonda hazır). Her aday kural için ele: *"bu her oturumda mı geçerli, yoksa bu göreve mi özgü?"* — göreve özgüyse CLAUDE'a değil PLAN/INTENT'e. **Gate (INTENT/PLAN↔CLAUDE):** `# Stack` PLAN'ın gerektirdiğini kapsar, `# Yapma` kapsam-dışını güçlendirir; "çatışma → DESIGN.md kazanır" kuralını yaz; MUST/ASLA enflasyonu yapma (bağırılan kural aşırı-tetiklenir). Taslak → onay → yaz.
 
 ### 4. DESIGN.md
-`references/design.md` · şablon `assets/templates/DESIGN.md`. Mimari kararlar (her zaman) + (UI varsa) tasarım dili (`google-labs/design.md` formatı + **kendi palet/font**, içselleştirilmiş). **Gate:** INTENT/PLAN ile uyum; CLAUDE ile teknik çelişki çıkarsa **DESIGN kazanır → CLAUDE'u güncelle.** Taslak → onay → yaz.
+`references/design.md` · şablon `assets/templates/DESIGN.md`. Mimari kararlar (her zaman) + (UI varsa) tasarım dili (`google-labs-code/design.md` formatı + **kendi palet/font**, içselleştirilmiş). **Gate:** INTENT/PLAN ile uyum; CLAUDE ile teknik çelişki çıkarsa **DESIGN kazanır → CLAUDE'u güncelle.** Taslak → onay → yaz.
 
 ### 5. MEMORY.md
 `references/memory.md` · şablon `assets/templates/MEMORY.md`. 4-katman iskelet (working/episodic/semantic/procedural; procedural = **tetik→koşul→aksiyon** formatında). **Gate (hepsi↔MEMORY):** katmanlar 4 dosyanın kesin kararlarını doğru yansıtır (ayna), eski karar taşımaz. Taslak → onay → yaz.
