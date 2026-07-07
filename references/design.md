@@ -23,6 +23,7 @@ Kapsanması gereken **non-UI eksenler:** veri modeli/şema · API/arayüz kontra
 - **Token'lar (yaml):** `colors` (primary/secondary/tertiary=tek vurgu/neutral=zemin), `typography` (h1/body/mono: fontFamily+fontSize+weight), `rounded`, `spacing`, `components`. Referans: `{colors.primary}`.
 - **Prose — sıralı `##` bölümler:** Overview · Colors · Typography · Layout & Spacing · (Elevation) · (Shapes) · Components · Do's & Don'ts. Her bölüm token kararının gerekçesi.
 - **Kendi palet/font'un** — genel değil, projeye/kullanıcıya özel ("statement"/minimal vb. ton).
+- **Açık-kaynak hızlandırıcılar:** palet/ton İLHAMI için KB *awesome-design-md — AI Ajanları için Hazır DESIGN.md Koleksiyonu* (73+ hazır dosya; **kopyalama — içselleştir**, yukarıdaki ilke). Token bloğu yazılınca opsiyonel mekanik doğrulama: google-labs `design.md` CLI `lint` komutu (yapı + WCAG kontrast; makinede kuruluysa — üret-sonra-doğrula ruhu).
 
 ## Tutarlılık geçidi (`references/tutarlilik.md §3`)
 - [ ] Mimari, INTENT başarı kriterlerini destekliyor mu? Kapsam-dışını mimariye sızdırmıyor mu? (INTENT↔DESIGN)

@@ -9,6 +9,7 @@
 - Her adımda iki şey yaz: **NE yapılacak** + **NASIL doğrulanacak** (mümkünse localhost'ta ayağa kaldır / test yaz / çıktı gözle).
 - Her adımın **karşıladığı başarı kriterini** `→ BK#` kimliğiyle işaretle (izlenebilirlik — kickoff-verify mekanik eşler: her BK ≥1 adımda, her adım geçerli bir BK'de). Adımın "bitti" kanıtı, o BK'nin **GWT Then**'idir; kriter `[kod]` sınıfındaysa kanıt test/script çıktısıdır.
 - Belirsiz teknik seçim (stack/araç/pattern) → `/ai-proje-rehberi`'ye danış; karar DESIGN.md'ye gider, PLAN ona hizalanır.
+- **Kalite çıtası:** doldurulmuş örnek `assets/examples/PLAN-ornek.md` (INTENT-ornek'in devamı) — taslağın o yoğunlukta olmalı (format örneği talimattan güçlüdür).
 
 ## Röportaj soruları
 - *"Hangi adım olmadan diğerleri başlayamaz?"* (bağımlılık) · *"Bu adımın 'bitti' kanıtı ne?"* (doğrulama) · *"Bu tek commit'e sığar mı, yoksa böl?"* (atomiklik).

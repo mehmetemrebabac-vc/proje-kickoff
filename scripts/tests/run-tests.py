@@ -73,8 +73,12 @@ Tek komutla rapor üreten CLI.
 
 DESIGN = """# DESIGN — Test Projesi
 
-## Mimari kararlar
-- CLI: argparse; çıktı: markdown rapor.
+## A. Mimari Kararlar
+
+### Stack seçimi
+- **Karar:** CLI argparse; çıktı markdown rapor.
+- **Gerekçe:** BK1 hızlı üretim; sıfır bağımlılık.
+- **Neden diğeri değil:** click — ekstra bağımlılık.
 """
 
 MEMORY = """# MEMORY — Test Projesi
@@ -124,9 +128,11 @@ def w(base, rel, content):
 
 
 def state(base, mod="greenfield", faz="kickoff"):
+    durum = ({"spec": "done"} if mod == "delta"
+             else {k: "done" for k in ("intent", "plan", "claude", "design", "memory")})
     w(base, ".kickoff/state.json", json.dumps({
         "mod": mod, "faz": faz, "proje_koku": base,
-        "durum": {k: "done" for k in ("intent", "plan", "claude", "design", "memory")},
+        "durum": durum,
         "acik_sorular": [], "son_guncelleme": "2026-07-02"}))
 
 
@@ -245,6 +251,55 @@ def _(d):
 def _(d):
     state(d, mod="greenfield")
     rc, out = run(d, delta=True); assert rc == 1 and "beklenen: delta" in out, out
+
+# --- v2 vakaları ---
+
+@case("v2: PLAN başlığı eksik (Kapsam-dışı bekçisi) → ERROR")
+def _(d):
+    w(d, "PLAN.md", PLAN.replace("## Kapsam-dışı bekçisi", "## Bekçi"))
+    rc, out = run(d); assert rc == 1 and "PLAN başlığı eksik" in out, out
+
+@case("v2: PLAN adımında Doğrulama satırı yok → ERROR")
+def _(d):
+    w(d, "PLAN.md", PLAN.replace("   - Doğrulama: --help çalışır.\n", ""))
+    rc, out = run(d); assert rc == 1 and "adım 1" in out and "Doğrulama:" in out, out
+
+@case("v2: PLAN adımında commit satırı yok → ERROR")
+def _(d):
+    w(d, "PLAN.md", PLAN.replace("   - commit: `cli: hata yolu`\n", ""))
+    rc, out = run(d); assert rc == 1 and "adım 2" in out and "commit:" in out, out
+
+@case("v2: DESIGN'de Karar ADR alanı yok → ERROR")
+def _(d):
+    w(d, "DESIGN.md", DESIGN.replace("- **Karar:** CLI argparse; çıktı markdown rapor.\n", ""))
+    rc, out = run(d); assert rc == 1 and "**Karar:**" in out, out
+
+@case("v2: .gitignore .kickoff'u dışlıyor → ERROR")
+def _(d):
+    w(d, ".gitignore", "node_modules/\n.kickoff/\n")
+    rc, out = run(d); assert rc == 1 and ".gitignore" in out, out
+
+@case("v2: GWT izi eksik BK → WARNING (exit 0; --strict 1)")
+def _(d):
+    w(d, "INTENT.md", INTENT.replace(
+        "- [ ] **BK2** Given bozuk girdi, When komut koşar, Then anlaşılır hata döner · doğrulayıcı: [kod]",
+        "- [ ] **BK2** Bozuk girdide anlaşılır hata döner · doğrulayıcı: [kod]"))
+    rc, out = run(d); assert rc == 0 and "GWT izi" in out, out
+    rc2, _o = run(d, strict=True); assert rc2 == 1, _o
+
+@case("v2: state durum.plan anahtarı eksik → ERROR")
+def _(d):
+    w(d, ".kickoff/state.json", json.dumps({
+        "mod": "greenfield", "faz": "kickoff", "proje_koku": d,
+        "durum": {k: "done" for k in ("intent", "claude", "design", "memory")},
+        "acik_sorular": [], "son_guncelleme": "2026-07-02"}))
+    rc, out = run(d); assert rc == 1 and "durum.plan eksik" in out, out
+
+@case("v2: delta ilk INVARIANT 'mevcut testler' değil → ERROR", delta=True)
+def _(d):
+    w(d, "docs/specs/rate-limit.md",
+      DELTA_SPEC.replace("- Mevcut testler hâlâ geçer.", "- API şeması değişmez."))
+    rc, out = run(d, delta=True); assert rc == 1 and "ilk INVARIANT" in out, out
 
 
 def main():

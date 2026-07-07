@@ -2,7 +2,7 @@
 
 > **Misyon:** 5 dosya (INTENT → PLAN → CLAUDE → DESIGN → MEMORY) sırayla kurulurken, her yeni cevap/dosya öncekilerle **TEYİT** edilir; çelişki üzerine **asla yazılmaz** — işaretlenir, sınıflandırılır, hiyerarşiye göre çözülür **VEYA** kullanıcıya sorulur, sonra deftere işlenir. Bu dosya skill'in kalbidir: her `YAZ` adımı önce buradan geçer. **DELTA modunda da aynen geçerli:** spec'in "hedef delta + kapsam-sınırı" bölümü AMAÇ katmanıdır. (Köken — tarihsel uyarlama, canlı bağımlılık DEĞİL: 4-ilişki taksonomisi + "çelişki = işaretle, üzerine yazma" ilkesi vault INGEST motorundan, "DESIGN.md kazanır" KB *5-Dosya Workflow'u*ndan uyarlandı. Motor bu dosyada kendi başına TAMDIR — §4 tabloyu içerir; vault/ai-proje-rehberi kurulu olmasa da çalışır.)
 >
-> **İçindekiler:** §1 Otorite hiyerarşisi · §2 Defter (+resume) · §3 Pre-write gate · §4 İlişki sınıfları · §5 Çelişki protokolü · §6 Kapanış matrisi. · **Akış/dosya-sistemi mekaniği** (resume, mod, çatışma geçidi, devir) → `references/akis-modlari.md`.
+> **İçindekiler:** §1 Otorite hiyerarşisi · §2 Defter (+resume) · §3 Pre-write gate · §4 İlişki sınıfları · §5 Çelişki protokolü · §6 Kapanış matrisi. · **Akış/dosya-sistemi mekaniği** (resume, mod, disk geçidi, plan-mode) → `references/akis-modlari.md` · **devir** → `references/devir.md`.
 
 ---
 
@@ -49,7 +49,7 @@ Oturum boyunca tutulan **hafif tek tablo** (sohbet-içi; dosyaya yazılmaz). Her
 | K5 | DESIGN/Mimari         | Teknik karar …           | UYGULAMA  | kesin       |
 | …  | …                     | …                        | …         | …           |
 
-**Kurallar:** ① Sadece *kilit* karar girer (gürültü değil). ② Her giriş **tek cümle.** ③ Çelişki çözülünce kaybeden satır *silinmez* → `çözüldü→K#` notuyla işaretlenir. ④ Açık-soru kapanınca `Durum: kesin` olur. ⑤ Defteri her `ONAY`dan sonra kullanıcıya kısa özetle göster.
+**Kurallar:** ① Sadece *kilit* karar girer (gürültü değil). ② Her giriş **tek cümle.** ③ Çelişki çözülünce kaybeden satır *silinmez* → `çözüldü→K#` notuyla işaretlenir. ④ Açık-soru kapanınca `Durum: kesin` olur. ⑤ Defter **İÇ KAYITTIR**; her `ONAY`dan sonra kullanıcıya SADE dille özetlenir — *"Şu ana kadar netleşenler: …"* + varsa *"Hâlâ açık: …"* iki kısa liste (tablo, katman adı, K# kimliği sohbette gösterilmez → SKILL.md ilke 7).
 
 > **Resume — diskten yeniden-türetme:** Oturum koparsa/context düşerse defter kaybolmaz; `/proje-kickoff` yeniden çağrılınca var olan 5 dosyadan damıtılarak **yeniden kurulur** (`references/akis-modlari.md §1 RESUME`). Disk = kaynak; sohbet defteri = türetilmiş önbellek. Kalıcı anchor: `<proje-kökü>/.kickoff/state.json` (**ZORUNLU** — her ONAY'dan sonra güncellenir; RESUME ayrıştırıcısının tek güvenilir sinyali).
 
@@ -72,6 +72,14 @@ Her dosya `YAZ` edilmeden önce, ilgili dosya çiftleri için aşağıdaki invar
 | **hepsi ↔ MEMORY**  | MEMORY katmanları 4 dosyanın *kesin* kararlarını doğru yansıtır; eski/çelişen karar taşımaz. Eşleme: `semantic`←INTENT/DESIGN gerçekleri · `procedural`←CLAUDE kuralları · `episodic`←çözülen çelişkiler · `working`←güncel PLAN adımı |
 
 > **Geçit kuralı:** İlgili tüm satırlar ✅ olmadan `YAZ` **yapılmaz.** Geçemeyen her satır bir *çelişki bulgusu*dur.
+
+**DELTA modu eşleniği:** 5-dosya çiftleri yerine spec-içi üç invariant denetlenir (spec'in "hedef delta + kapsam sınırı" bölümü = AMAÇ katmanı):
+
+| Çift (DELTA) | Tutarlılık invariantı (✅ = geçer) |
+|------|-------------------------------------|
+| **hedef-delta ↔ Adımlar**  | Her adım hedef deltaya hizmet eder; hiçbir adım kapsam-sınırına girmez |
+| **INVARIANT ↔ BK**         | Değişmeyecek invariant'lar ≥1 BK ile güvenceye alınmış (tipik: "mevcut testler geçer" GWT'si) |
+| **CLAUDE-merge ↔ spec**    | CLAUDE.md'ye eklenen kural/yasak, hedef delta ve kapsam-sınırıyla çelişmez |
 
 ---
 
@@ -105,11 +113,15 @@ Yeni karar, mevcut deftere göre sınıflanır:
 
 **Çekirdek kural:** *Üzerine yazma — açıkça işaretle.* Hiçbir karar sessizce ezilmez; her çözüm defterde iz bırakır. INTENT amacının netliğinden şüphedeysen otomatik çözme — **SOR.**
 
+> **Kullanıcıya sunum (SKILL.md ilke 7):** çelişki kullanıcıya teknik gösterimle değil TEK SADE cümleyle taşınır — örn. *"Bir uyumsuzluk yakaladım: daha önce 'sıfır backend' demiştik, şimdi Postgres diyorsun — hangisi geçerli olsun?"* Teknik işaretleme (⚠️ / ✗ / K# / katman) defterde kalır.
+
 > **Disk muadili:** Diskte mevcut bir dosya taslakla çelişiyorsa bu protokolden **AYNEN** geçer (işaretle → sınıfla → katmanla → çöz/SOR → defter). Dosyayı sessizce ezmek = bu kuralın ihlali (`references/akis-modlari.md §3`).
 
 ---
 
 ## 6. Kapanış bütünsel geçişi (final holistic pass)
+
+> **Taze-göz kuralı (DEFAULT):** Bu son taramayı kickoff'u yürüten model DEĞİL, **Agent tool ile açılan TAZE bir salt-okur alt-ajan** yapar — yazan göz kendi ödevini onaylamasın (KB *Loop Engineering*: "critic'siz loop = ajanın kendi ödevini onaylaması"; KB *Anthropic pptx Skill*: taze göz beklediğini değil olanı görür). Ajana YALNIZ şunlar verilir: `<proje-kökü>` + bu dosyanın yolu (`references/tutarlilik.md`) + görev: *"5 dosyayı (DELTA'da spec + CLAUDE.md) diskten oku, §6 matrisi + kapanış checklist'iyle tara, her çelişkiyi kaynak-çifti ve tek cümle açıklamayla listele."* Defter özeti VERİLMEZ (önyargı taşımasın; dosyalar zaten diskin gerçeğidir). Dönen her bulgu §5 protokolünden geçer. Kullanıcı açıkça vazgeçerse ana model tarar. Bulgular kullanıcıya SADE dille sunulur (SKILL.md ilke 7).
 
 5 dosya bittiğinde, çift-çift geçmiş olsa bile **tam matris** son kez taranır (geç ortaya çıkan zincir-çelişkileri yakalar):
 

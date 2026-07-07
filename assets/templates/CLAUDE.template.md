@@ -30,5 +30,5 @@
 - <doldur>
 
 ---
-<!-- Çatışma kuralı — AYNEN KALSIN: -->
+<!-- Alttaki Çatışma kuralı satırı AYNEN KALIR; bu yorum bloğu ise silinir: -->
 > **Çatışma kuralı:** Dosyalar teknik konuda çelişirse **DESIGN.md kazanır.** INTENT (amaç/hedef/kapsam-dışı) ise hiçbir dosyanın çiğneyemeyeceği kuzey yıldızıdır.
